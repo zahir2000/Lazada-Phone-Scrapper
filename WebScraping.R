@@ -1,6 +1,7 @@
 library(xml2)
 library(rvest)
 library(stringr)
+library(jsonlite)
 
 #Please make sure both the .R files are in the same directory.
 
@@ -12,7 +13,8 @@ urlToScrap <- c(
 )
 
 #Set source for our scrapper.R
-source(paste(dirname(rstudioapi::getSourceEditorContext()$path), "Scrapper.R", sep = "/"))
+scriptDir <- dirname(rstudioapi::getSourceEditorContext()$path)
+source(paste(scriptDir, "Scrapper.R", sep = "/"))
 
 #Initialize empty products dataframe
 products = data.frame()
@@ -23,3 +25,14 @@ for (i in 1:length(urlToScrap)) {
 }
 
 print(products)
+
+#Store data in JSON format
+json_data <- toJSON(products)
+cat(json_data)
+write(json_data, paste(scriptDir, "products.json", sep="/"))
+
+#To output dataframe in a nicer format - uncomment codes below
+#install.packages("gridExtra")
+#library(gridExtra)
+#grid.table(products)
+#dev.off()

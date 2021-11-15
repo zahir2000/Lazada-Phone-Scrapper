@@ -1,4 +1,5 @@
 #  `Lazada Scrapper` for Smartphones & Tablets
+[View on RPubs](https://rpubs.com/zahirsher/lazada-phone-scrapper)
 ### Packages
 ```{r}
 install.packages('selectr')
